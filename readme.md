@@ -29,7 +29,12 @@ Because `getUserMedia` only works in HTTPS, hence need HTTPS in local WebRTC pro
 Ref:
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia
-- https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia 
+- https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+- Also ref: https://jsfiddle.net/atabegaslan/bv3u04fy . This fiddle shows how to use JS and browser's `navigator` just to access device's webcam, it's the same `navigator.mediaDevices.getUserMedia`.
+
+# Peer connection
+
+Read: https://webrtc.org/getting-started/peer-connections
 
 # Steps in a WebRTC app
 1. getUserMedia() is run - CLIENT1/Init/Caller/Offerer
