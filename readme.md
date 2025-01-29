@@ -1,8 +1,35 @@
+# Tutorial
+
+https://www.youtube.com/watch?v=g42yNO_dxWQ&t=1930s
+
+# Clone, setup & Run
+
+```
+git clone https://github.com/Ruslan-Aliyev/WebRTC_Plain_JS.git
+cd https://github.com/Ruslan-Aliyev/WebRTC_Plain_JS.git
+npm install mkcert -g
+mkcert create-ca
+mkcert create-cert
+npm install
+npm install -g nodemon
+nodemon ./server.js
+```
+
+Visit: https://localhost:8181/
+
 # Setup https:
+
+Because `getUserMedia` only works in HTTPS, hence need HTTPS in local WebRTC project development.
+
 1. npm install mkcert -g
 2. mkcert create-ca
 3. mkcert create-cert
 4. OPTIONAL: to run it locally, update the files with your local IP
+
+Ref:
+
+- https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia
+- https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia 
 
 # Steps in a WebRTC app
 1. getUserMedia() is run - CLIENT1/Init/Caller/Offerer

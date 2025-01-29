@@ -40,7 +40,7 @@ const call = async e=>{
     try{
         console.log("Creating offer...")
         const offer = await peerConnection.createOffer();
-        console.log(offer);
+        console.log('Offer sent to signalingServer: ', offer);
         peerConnection.setLocalDescription(offer);
         didIOffer = true;
         socket.emit('newOffer',offer); //send offer to signalingServer
@@ -100,12 +100,13 @@ const createPeerConnection = (offerObj)=>{
         //RTCPeerConnection is the thing that creates the connection
         //we can pass a config object, and that config object can contain stun servers
         //which will fetch us ICE candidates
-        peerConnection = await new RTCPeerConnection(peerConfiguration)
+        peerConnection = await new RTCPeerConnection(peerConfiguration);
+        // https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection
         remoteStream = new MediaStream()
         remoteVideoEl.srcObject = remoteStream;
 
 
-        localStream.getTracks().forEach(track=>{
+        localStream.getTracks().forEach(track=>{ // audio and video
             //add localtracks so that they can be sent once the connection is established
             peerConnection.addTrack(track,localStream);
         })
@@ -115,9 +116,10 @@ const createPeerConnection = (offerObj)=>{
             console.log(peerConnection.signalingState)
         });
 
-        peerConnection.addEventListener('icecandidate',e=>{
-            console.log('........Ice candidate found!......')
-            console.log(e)
+        peerConnection.addEventListener('icecandidate',e => {
+            console.log('........Ice candidate found!......');
+            console.log('Ice candidate sent to signalingServer: ', e);
+            // https://pub.dev/documentation/js_bindings/latest/webrtc/RTCPeerConnectionIceEvent-class.html
             if(e.candidate){
                 socket.emit('sendIceCandidateToSignalingServer',{
                     iceCandidate: e.candidate,
@@ -153,4 +155,4 @@ const addNewIceCandidate = iceCandidate=>{
 }
 
 
-document.querySelector('#call').addEventListener('click',call)
+document.querySelector('#call').addEventListener('click',call) // START HERE

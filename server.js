@@ -11,7 +11,7 @@ app.use(express.static(__dirname))
 // $ mkcert create-ca
 // $ mkcert create-cert
 const key = fs.readFileSync('cert.key');
-const cert = fs.readFileSync('cert.crt');
+const cert = fs.readFileSync('cert.crt'); // getUserMedia only works in HTTPS
 
 //we changed our express setup so we can use https
 //pass the key and cert to createServer on https
